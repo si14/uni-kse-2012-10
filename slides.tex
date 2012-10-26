@@ -137,7 +137,7 @@
   \item Секвенаторы Illumina редко делают инделы, чаще замены
   \item Секвенаторы Illumina делают больше ошибок ближе к концу рида
   \item Ошибки обычно независимы друг от друга и зависят от исходного
-    нуклеотида (A→T $\neq$ A→C)
+    нуклеотида ($P(A→T) \neq P(A→C)$)
   \end{itemize}
   Один из достаточно успешных тулов — ECHO (Wei-Chun Kao, Andrew
   H. Chan, and Yun S. Song, University of California, Berkeley)
@@ -246,12 +246,23 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Maximum Likelihood}
+  \begin{center}
+    \Large
+    \[P(A_i) = P_{observed}(A_i)\]
+    \[\operatorname*{arg\,max}_{X=A,T,G,C} P(X)\]
+  \end{center}
+\end{frame}
+
+
 \begin{frame}{MAP}
   \begin{center}
     \Large
     Maximum A Posteriori
-    \[P(A_i) = \prod_{j=1}^{N} \Phi_{READS_{j,i}, A}\]
+    \[P(A_i) = P(A_i | A_{obvserved}) = \frac{P(A_{observed} | A_i)
+      P(A_i)}{P(A_{observed})}\]
     \[\operatorname*{arg\,max}_{X=A,T,G,C} P(X)\]
+    \[P(X) \approx P(A_{observed} | P_i) P(A_i)\]
   \end{center}
 \end{frame}
 
@@ -264,6 +275,15 @@
     \large
     $r_m$ — нуклеотид в риде в позиции m\\
     $H_m$ — нуклеотид в истинном сиквенсе в позиции m
+  \end{center}
+\end{frame}
+
+\begin{frame}{MAP, revisited}
+  \begin{center}
+    \Large
+    Maximum A Posteriori
+    \[P(A_i) = \prod_{j=1}^{N} \Phi_{READS_{j,i}, A}\]
+    \[\operatorname*{arg\,max}_{X=A,T,G,C} P(X)\]
   \end{center}
 \end{frame}
 
